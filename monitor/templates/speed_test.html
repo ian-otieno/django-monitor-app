@@ -1,0 +1,43 @@
+<!-- speed_test.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+{{ plot_div | safe }}
+</div>
+<div class="container">
+    <h1>Speed Test Results</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Server</th>
+                <th>Status</th>
+                <th>Response Time (s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for server, data in response_times.items %}
+                <tr>
+                    <td>{{ server }}</td>
+                    {% if data.status == 'Active' %}
+                        <td><span class="text-success font-weight-bold">{{ data.status }}</span></td>
+                    {% else %}
+                        <td><span class="text-danger font-weight-bold">{{ data.status }}</span></td>
+                    {% endif %}
+                    <td>{{ data.response_time }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>Download Speed</td>
+                <td></td>
+                <td>{{ download_speed }} Mbps</td>
+            </tr>
+            <tr>
+                <td>Upload Speed</td>
+                <td></td>
+                <td>{{ upload_speed }} Mbps</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

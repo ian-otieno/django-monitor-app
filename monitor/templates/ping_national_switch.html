@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Ping National Switch</h1>
+{% if status == "active" %}
+<p>Status: <span class="text-success font-weight-bold">Active</span></p>
+{% else %}
+<p>Status: <span class="text-danger font-weight-bold">Inactive</span></p>
+{% endif %}
+<p>Response time: {{ response_time }}</p>
+{% endblock %}

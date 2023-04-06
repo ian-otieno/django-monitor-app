@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mb-4">Check IIS Uptime</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Server URL</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for server_status in server_statuses %}
+      <tr>
+        <td>{{ server_status.server_url }}</td>
+        {% if server_status.iis_status == "active" %}
+          <td><span class="text-success font-weight-bold">{{ server_status.iis_status }}</span></td>
+        {% else %}
+          <td><span class="text-danger font-weight-bold">{{ server_status.iis_status }}</span></td>
+        {% endif %}
+        <td>{{ server_status.last_updated|default:'' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

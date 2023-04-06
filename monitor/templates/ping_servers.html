@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Ping Servers</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Server</th>
+            <th>Response Time (ms)</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+        <tr>
+            <td>{{ result.server }}</td>
+            {% if result.status == "active" %}
+            <td>{{ result.response_time }}</td>
+            <td><span class="text-success font-weight-bold">{{ result.status }}</span></td>
+            {% else %}
+            <td>N/A</td>
+            <td><span class="text-danger font-weight-bold">{{ result.status }}</span></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>MySQL Service Status</h1>
+        {% if status == "active" %}
+            <div class="alert alert-success" role="alert">
+                {{ result }}
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                {{ result }}
+            </div>
+        {% endif %}
+        <h2>Endpoints</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Endpoint</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for endpoint, status in endpoints.items %}
+                    <tr>
+                        <td>{{ endpoint }}</td>
+                        {% if status == "up" %}
+                            <td class="text-success font-weight-bold">{{ status }}</td>
+                        {% else %}
+                            <td class="text-danger font-weight-bold">{{ status }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

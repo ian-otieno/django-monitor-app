@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Ping MNO Links</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Link</th>
+      <th>Response Time</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in ping_results %}
+    <tr>
+      <td>{{ result.link }}</td>
+      <td>{% if result.response_time == "Ping failed." %}{{ result.response_time }}{% else %}{{ result.response_time }} ms{% endif %}</td>
+      <td>{% if result.status == "active" %}<span class="text-success font-weight-bold">{{ result.status }}</span>{% else %}<span class="text-danger font-weight-bold">{{ result.status }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

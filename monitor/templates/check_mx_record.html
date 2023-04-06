@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Check MX Record</h1>
+{% if status == "active" %}
+<p>Status: <span class="text-success font-weight-bold">Active</span></p>
+{% else %}
+<p>Status: <span class="text-danger font-weight-bold">Inactive</span></p>
+{% endif %}
+{% endblock %}
